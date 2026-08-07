@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0f14">
+<meta name="description" content="TECH OPTION — Premium market intelligence, alerts and subscription access.">
+<title>TECH OPTION</title>
+<style>
+:root{
+  --bg:#0b0f14;
+  --card:#111821;
+  --card2:#0d131a;
+  --text:#f6f8fb;
+  --muted:#9aa6b5;
+  --accent:#d4af37;
+  --accent2:#f0d37b;
+  --border:#263140;
+  --ok:#7ad9a8;
+  --glow:rgba(212,175,55,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 50% -8%,rgba(212,175,55,.10),transparent 30%),
+    radial-gradient(circle at 10% 18%,rgba(84,170,255,.035),transparent 22%),
+    linear-gradient(180deg,#0b0f14 0%,#0e141c 52%,#0a0e13 100%);
+  color:var(--text);
+  line-height:1.72
+}
+body:before{
+  content:"";
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+  background-size:42px 42px
+}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1000px,calc(100% - 28px));margin:42px auto}
+.hero{
+  text-align:center;
+  margin-bottom:26px;
+  padding:10px 0 4px
+}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:var(--accent);
+  font-weight:850;
+  letter-spacing:.13em;
+  font-size:.93rem
+}
+.brand:before,.brand:after{
+  content:"";
+  width:24px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent))
+}
+.brand:after{transform:scaleX(-1)}
+h1{
+  margin:13px 0 10px;
+  font-size:clamp(2rem,4.8vw,3.35rem);
+  line-height:1.16;
+  letter-spacing:-.025em;
+  font-weight:800
+}
+.sub{
+  color:var(--muted);
+  max-width:760px;
+  margin:0 auto;
+  font-size:.96rem;
+  line-height:1.8
+}
+.hero-actions{
+  display:flex;
+  justify-content:center;
+  gap:11px;
+  flex-wrap:wrap;
+  margin-top:25px
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px 17px;
+  border-radius:13px;
+  border:1px solid var(--border);
+  background:var(--card2);
+  font-weight:780;
+  box-shadow:0 10px 26px rgba(0,0,0,.13);
+  transition:.2s ease
+}
+.btn.primary{
+  color:#0d1014;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  border-color:transparent;
+  box-shadow:0 14px 32px rgba(212,175,55,.14)
+}
+.btn:hover{transform:translateY(-2px)}
+.nav{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin:26px 0 32px
+}
+.nav a,.switch-label{
+  border:1px solid var(--border);
+  background:rgba(13,19,26,.92);
+  padding:9px 13px;
+  border-radius:999px;
+  font-size:.9rem;
+  transition:.2s;
+  cursor:pointer
+}
+.nav a:hover,.switch-label:hover{
+  border-color:rgba(212,175,55,.55);
+  background:#121820;
+  transform:translateY(-1px)
+}
+.switch-label{
+  border-color:rgba(212,175,55,.50);
+  color:var(--accent2);
+  background:#191509;
+  font-weight:850
+}
+.card{
+  position:relative;
+  background:linear-gradient(180deg,rgba(17,24,33,.985),rgba(14,20,28,.985));
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:26px;
+  box-shadow:0 20px 55px rgba(0,0,0,.25);
+  margin-bottom:18px;
+  overflow:hidden
+}
+.card:before{
+  content:"";
+  position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.30),transparent)
+}
+.card.highlight{
+  background:
+    radial-gradient(circle at 88% 0%,rgba(212,175,55,.07),transparent 28%),
+    linear-gradient(180deg,rgba(18,25,34,.99),rgba(14,20,28,.99));
+  border-color:rgba(212,175,55,.34)
+}
+.badge{
+  display:inline-block;
+  color:var(--ok);
+  border:1px solid #284b3c;
+  background:#0c1b15;
+  border-radius:999px;
+  padding:5px 10px;
+  font-size:.78rem;
+  font-weight:750;
+  letter-spacing:.03em;
+  margin-bottom:13px
+}
+.gold-badge{
+  color:var(--accent2);
+  border-color:#5c4a1e;
+  background:#1a160b
+}
+h2{
+  color:var(--accent2);
+  margin:0 0 12px;
+  font-size:1.32rem;
+  letter-spacing:-.005em
+}
+h3{margin:0 0 7px;font-size:1rem}
+p{color:#dbe3ed}
+.muted{color:var(--muted)}
+.section-intro{
+  color:var(--muted);
+  margin-top:-3px;
+  margin-bottom:18px;
+  font-size:.92rem
+}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.mini{
+  position:relative;
+  padding:17px;
+  border-radius:17px;
+  background:linear-gradient(180deg,#0d131a,#0b1016);
+  border:1px solid var(--border);
+  min-height:138px;
+  transition:.2s
+}
+.mini:hover{
+  border-color:rgba(212,175,55,.30);
+  transform:translateY(-2px)
+}
+.mini .num{
+  color:var(--accent);
+  font-size:.75rem;
+  font-weight:800;
+  margin-bottom:16px;
+  letter-spacing:.09em
+}
+.mini p{
+  margin:0;
+  color:var(--muted);
+  font-size:.87rem;
+  line-height:1.72
+}
+.socials{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.social{
+  padding:18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg,#0d131a,#0b1016);
+  transition:.2s
+}
+.social:hover{
+  border-color:rgba(212,175,55,.45);
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(0,0,0,.18)
+}
+.social strong{display:block;margin-bottom:4px}
+.social span{color:var(--muted);font-size:.88rem}
+details{
+  background:linear-gradient(180deg,#0d131a,#0b1016);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:15px 16px;
+  margin-top:10px
+}
+summary{cursor:pointer;font-weight:780}
+details p{color:var(--muted);margin-bottom:0}
+footer{
+  text-align:center;
+  color:var(--muted);
+  padding:22px 0 6px;
+  font-size:.88rem
+}
+/* CSS-only language switch */
+#langSwitch{position:absolute;opacity:0;pointer-events:none}
+.en-site{display:none}
+#langSwitch:checked ~ .ar-site{display:none}
+#langSwitch:checked ~ .en-site{display:block}
+#langSwitch:checked ~ .en-site .wrap{direction:ltr;text-align:left}
+#langSwitch:not(:checked) ~ .ar-site .wrap{direction:rtl;text-align:right}
+.hero,.nav,footer{text-align:center!important}
+@media(max-width:760px){
+  .wrap{margin:24px auto}
+  .card{padding:19px;border-radius:18px}
+  .grid2,.grid3,.socials{grid-template-columns:1fr}
+  h1{font-size:clamp(1.85rem,8.5vw,2.55rem);line-height:1.2}
+  .sub{font-size:.9rem}
+  h2{font-size:1.2rem}
+}
+
+.legal-rich ul{margin:10px 0 0;padding-inline-start:22px}
+.legal-rich li{color:#cfd8e3;margin:7px 0;font-size:.88rem}
+.legal-rich h3{margin:16px 0 6px;color:var(--text);font-size:.98rem}
+.legal-rich .notice{margin-top:14px;padding:13px 14px;border-inline-start:3px solid var(--accent);background:#0b1117;border-radius:10px;color:var(--muted);font-size:.86rem}
+.legal-rich p{font-size:.88rem;line-height:1.75}
+
+
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+.about-note{padding:17px;border-radius:16px;background:#0d131a;border:1px solid var(--border)}
+.about-note strong{display:block;color:var(--accent2);margin-bottom:6px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{padding:18px;border-radius:17px;background:linear-gradient(180deg,#0d131a,#0b1016);border:1px solid var(--border)}
+.step .step-no{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;background:#1a160b;border:1px solid #5c4a1e;color:var(--accent2);font-size:.78rem;font-weight:850;margin-bottom:12px}
+.step p{margin:0;color:var(--muted);font-size:.87rem;line-height:1.72}
+.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.support-card{padding:18px;border-radius:16px;border:1px solid var(--border);background:linear-gradient(180deg,#0d131a,#0b1016)}
+.support-card strong{display:block;margin-bottom:6px}
+.support-card p{margin:0 0 12px;color:var(--muted);font-size:.88rem}
+@media(max-width:760px){.about-grid,.steps,.support-grid{grid-template-columns:1fr}}
+
+
+.how-shell{
+  position:relative;
+  padding:4px 0 2px
+}
+.how-line{
+  position:absolute;
+  top:42px;
+  left:9%;
+  right:9%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.50),transparent);
+  z-index:0
+}
+.how-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px
+}
+.how-card{
+  position:relative;
+  padding:20px 17px 18px;
+  min-height:190px;
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(212,175,55,.055),transparent 35%),
+    linear-gradient(180deg,#0d131a,#0b1016);
+  border:1px solid var(--border);
+  text-align:center;
+  transition:.2s ease
+}
+.how-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(212,175,55,.38);
+  box-shadow:0 14px 30px rgba(0,0,0,.18)
+}
+.how-icon{
+  width:46px;
+  height:46px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--accent2);
+  background:#171409;
+  border:1px solid #5c4a1e;
+  box-shadow:0 0 0 6px rgba(212,175,55,.035);
+  font-size:1.05rem;
+  font-weight:900
+}
+.how-card h3{
+  margin-bottom:7px;
+  font-size:.98rem
+}
+.how-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:.85rem;
+  line-height:1.72
+}
+.how-note{
+  margin-top:16px;
+  padding:13px 15px;
+  border-radius:12px;
+  background:#0b1117;
+  border:1px solid var(--border);
+  color:var(--muted);
+  font-size:.86rem
+}
+@media(max-width:760px){
+  .how-grid{grid-template-columns:1fr}
+  .how-line{display:none}
+  .how-card{text-align:start;min-height:auto}
+  .how-icon{margin:0 0 12px}
+}
+
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="langSwitch">
+
+<!-- ARABIC -->
+<div class="ar-site">
+<main class="wrap">
+
+<header class="hero">
+  <div class="brand">✦ TECH OPTION</div>
+  <h1>رؤية أوضح للسوق.<br>تجربة أكثر احترافية.</h1>
+  <div class="sub">
+    منصة تجمع التحليل، التنبيهات، وإدارة الوصول في تجربة واحدة مصممة لتكون واضحة، سريعة، ومنظمة.
+  </div>
+  <div class="hero-actions">
+    <a class="btn primary" href="https://t.me/HkoozhSub_Bot" target="_blank">🤖 ابدأ عبر بوت الاشتراكات</a>
+    <a class="btn" href="https://t.me/techoption2" target="_blank">📣 زيارة القناة العامة</a>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#ar-overview">نظرة عامة</a>
+  <a href="#ar-about">من نحن</a>
+  <a href="#ar-how">كيف تعمل</a>
+  <a href="#ar-services">الخدمات</a>
+  <a href="#ar-links">الروابط الرسمية</a>
+  <a href="#ar-support">الدعم</a>
+  <a href="#ar-faq">الأسئلة الشائعة</a>
+  <a href="#ar-legal">السياسات</a>
+  <label for="langSwitch" class="switch-label">EN</label>
+</nav>
+
+<section id="ar-overview" class="card highlight">
+  <span class="badge gold-badge">✦ TECH OPTION • OVERVIEW</span>
+  <h2>منظومة واحدة. تجربة متكاملة.</h2>
+  <p class="section-intro">
+    TECH OPTION مصممة لتجمع أهم ما يحتاجه المستخدم في مكان واحد، بدون زحمة وبدون تعقيد.
+  </p>
+
+  <div class="grid3">
+    <div class="mini">
+      <div class="num">01 • MARKET</div>
+      <h3>Market Intelligence</h3>
+      <p>قراءة منظمة لاتجاه السوق والسيولة والمستويات ضمن منهج TECH OPTION.</p>
+    </div>
+    <div class="mini">
+      <div class="num">02 • ALERTS</div>
+      <h3>Prime Alerts</h3>
+      <p>تنبيهات واضحة ومباشرة مرتبطة بحالة السوق وإشارات النظام.</p>
+    </div>
+    <div class="mini">
+      <div class="num">03 • ACCESS</div>
+      <h3>Subscription Access</h3>
+      <p>إدارة الاشتراك والوصول إلى الخدمة بسهولة عبر Telegram.</p>
+    </div>
+  </div>
+</section>
+
+<section id="ar-about" class="card">
+  <span class="badge gold-badge">✦ ABOUT TECH OPTION</span>
+  <h2>من نحن</h2>
+  <p class="section-intro">
+    TECH OPTION منصة رقمية تركز على تقديم تجربة منظمة وواضحة للمستخدم في مجال التحليل والتنبيهات والوصول إلى الخدمات.
+  </p>
+
+  <div class="about-grid">
+    <div class="mini">
+      <div class="num">OUR FOCUS</div>
+      <h3>وضوح قبل كل شيء</h3>
+      <p>نركز على تنظيم المعلومة، تبسيط الوصول، وتقديم التنبيهات والخدمات ضمن تجربة واحدة متناسقة.</p>
+    </div>
+    <div class="about-note">
+      <strong>◆ TECH OPTION PRINCIPLE</strong>
+      <p class="muted">معلومات أوضح، وصول أسهل، ومسؤولية كاملة للمستخدم عن قراراته التداولية.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="ar-how" class="card">
+  <span class="badge gold-badge">◆ HOW IT WORKS</span>
+  <h2>من البداية إلى الوصول — بخطوات واضحة</h2>
+  <p class="section-intro">
+    صممنا رحلة الاشتراك لتكون مباشرة وبسيطة، من أول ضغطة حتى الوصول إلى الخدمة.
+  </p>
+
+  <div class="how-shell">
+    <div class="how-line"></div>
+
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-icon">01</div>
+        <h3>ابدأ من البوت الرسمي</h3>
+        <p>افتح بوت TECH OPTION الرسمي للتأكد أنك تبدأ من المصدر الصحيح.</p>
+      </div>
+
+      <div class="how-card">
+        <div class="how-icon">02</div>
+        <h3>راجع خيارات الاشتراك</h3>
+        <p>استعرض الباقات أو الخيارات المتاحة واختر ما يناسب احتياجك.</p>
+      </div>
+
+      <div class="how-card">
+        <div class="how-icon">03</div>
+        <h3>أكمل التفعيل</h3>
+        <p>اتبع خطوات التفعيل داخل البوت حتى يتم تأكيد الاشتراك بنجاح.</p>
+      </div>
+
+      <div class="how-card">
+        <div class="how-icon">04</div>
+        <h3>ادخل إلى الخدمة</h3>
+        <p>بعد التفعيل تحصل على الوصول حسب الاشتراك المفعّل وحالة حسابك.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="how-note">
+    ✦ استخدم دائمًا الروابط الرسمية الموجودة في هذا الموقع عند الاشتراك أو الوصول إلى خدمات TECH OPTION.
+  </div>
+</section>
+
+
+<section id="ar-services" class="card">
+  <span class="badge gold-badge">✦ SERVICES</span>
+  <h2>خدمات TECH OPTION</h2>
+  <p class="section-intro">كل خدمة لها هدف واضح: تحليل أفضل، وصول أسهل، وتجربة أكثر ترتيبًا.</p>
+
+  <div class="grid2">
+    <div class="mini"><h3>📊 Market Intelligence</h3><p>تحليل اتجاه السوق والسيولة والمستويات الفنية بطريقة مرتبة وسريعة القراءة.</p></div>
+    <div class="mini"><h3>⚡ Prime Alerts</h3><p>تنبيهات مرتبطة بشروط واستراتيجيات النظام بدل التنبيه العشوائي.</p></div>
+    <div class="mini"><h3>🤖 Subscription Access</h3><p>إدارة الاشتراك والوصول عبر بوت Telegram الرسمي من مكان واحد.</p></div>
+    <div class="mini"><h3>🛡️ Risk Awareness</h3><p>التداول ينطوي على مخاطر، ولا توجد أرباح مضمونة أو نتائج مؤكدة.</p></div>
+  </div>
+</section>
+
+<section id="ar-links" class="card">
+  <span class="badge gold-badge">◆ OFFICIAL CHANNELS</span>
+  <h2>روابط TECH OPTION الرسمية</h2>
+  <p class="section-intro">استخدم هذه الروابط فقط للوصول إلى قنوات TECH OPTION الرسمية.</p>
+
+  <div class="socials">
+    <a class="social" href="https://t.me/techoption2" target="_blank">
+      <strong>Telegram Channel ↗</strong>
+      <span>القناة العامة الرسمية</span>
+    </a>
+    <a class="social" href="https://t.me/HkoozhSub_Bot" target="_blank">
+      <strong>Subscription Bot ↗</strong>
+      <span>بوت الاشتراكات الرسمي</span>
+    </a>
+    <a class="social" href="https://www.tiktok.com/@techoption25?_r=1&_t=ZS-98g2ZvrFR0k" target="_blank">
+      <strong>TikTok ↗</strong>
+      <span>@techoption25</span>
+    </a>
+    <a class="social" href="https://snapchat.com/t/RquqbRy0" target="_blank">
+      <strong>Snapchat ↗</strong>
+      <span>الحساب الرسمي</span>
+    </a>
+  </div>
+</section>
+
+
+<section id="ar-support" class="card">
+  <span class="badge gold-badge">◆ SUPPORT & CONTACT</span>
+  <h2>الدعم والتواصل</h2>
+  <p class="section-intro">للوصول السريع إلى القناة أو بوت الاشتراكات، استخدم الروابط الرسمية فقط.</p>
+
+  <div class="support-grid">
+    <div class="support-card">
+      <strong>🤖 بوت الاشتراكات</strong>
+      <p>للاشتراك، الوصول للخدمة، أو متابعة حالة الاشتراك.</p>
+      <a class="btn primary" href="https://t.me/HkoozhSub_Bot" target="_blank">فتح البوت الرسمي</a>
+    </div>
+    <div class="support-card">
+      <strong>📣 القناة العامة</strong>
+      <p>لمتابعة التحديثات والمحتوى العام الخاص بـ TECH OPTION.</p>
+      <a class="btn" href="https://t.me/techoption2" target="_blank">فتح القناة العامة</a>
+    </div>
+  </div>
+</section>
+
+<section id="ar-faq" class="card">
+  <span class="badge gold-badge">◈ FAQ</span>
+  <h2>أسئلة شائعة</h2>
+
+  <details>
+    <summary>هل الأرباح مضمونة؟</summary>
+    <p>لا. التداول والاستثمار ينطويان على مخاطر، ولا توجد أي نتائج أو أرباح مضمونة.</p>
+  </details>
+  <details>
+    <summary>كيف يتم الاشتراك؟</summary>
+    <p>يتم الاشتراك والوصول إلى الخدمة عبر بوت TECH OPTION الرسمي الموجود أعلى الصفحة.</p>
+  </details>
+  <details>
+    <summary>هل الاشتراك قابل للاسترداد؟</summary>
+    <p>بعد تفعيل الاشتراك المدفوع يكون غير قابل للاسترداد بشكل عام، إلا إذا كان النظام واجب التطبيق يفرض خلاف ذلك.</p>
+  </details>
+  <details>
+    <summary>هل تنبيهات TECH OPTION تعتبر استشارة مالية شخصية؟</summary>
+    <p>لا. الخدمة تقدم معلومات وتحليلات وتنبيهات سوقية، ويبقى المستخدم مسؤولًا عن قراراته المالية والتداولية.</p>
+  </details>
+</section>
+
+
+<section id="ar-legal" class="card">
+  <span class="badge gold-badge">◆ LEGAL CENTER</span>
+  <h2>السياسات والشروط</h2>
+
+  <details class="legal-rich">
+    <summary>Privacy Policy • سياسة الخصوصية</summary>
+    <p>تحترم TECH OPTION خصوصية المستخدمين، وتوضح هذه السياسة كيفية التعامل مع البيانات عند استخدام خدمات TECH OPTION أو البوت على Telegram.</p>
+          <h3>البيانات التي قد تتم معالجتها</h3>
+          <ul>
+            <li>معرّف المستخدم في Telegram</li>
+            <li>الاسم واسم المستخدم إن توفرا</li>
+            <li>حالة التفاعل والاشتراك</li>
+            <li>تاريخ بداية ونهاية الاشتراك</li>
+            <li>الطلبات والإجراءات التي تتم عبر البوت</li>
+            <li>سجلات تقنية لازمة للأمان والتشخيص والتشغيل</li>
+          </ul>
+          <h3>استخدام البيانات</h3>
+          <ul>
+            <li>إدارة الاشتراكات والوصول للخدمة</li>
+            <li>تقديم وظائف البوت والدعم</li>
+            <li>رفع الاعتمادية والأمان</li>
+            <li>منع الإساءة والرسائل المزعجة والوصول غير المصرح</li>
+            <li>تشخيص المشاكل التقنية</li>
+          </ul>
+          <p>لا تبيع TECH OPTION البيانات الشخصية للمستخدمين، ولا تطلب كلمات مرور Telegram أو بيانات الدخول للحساب.</p>
+  </details>
+  <details class="legal-rich">
+    <summary>Terms of Service • شروط الاستخدام</summary>
+    <p>باستخدام خدمات TECH OPTION فإنك توافق على استخدام الخدمة بشكل نظامي ووفق هذه الشروط.</p>
+          <ul>
+            <li>قد يتطلب الوصول اشتراكًا فعالًا أو فترة تجريبية.</li>
+            <li>الاشتراك للاستخدام الشخصي للمستخدم المصرح له، ولا يجوز إعادة بيعه أو مشاركته أو نسخه أو إعادة توزيعه دون إذن.</li>
+            <li>يجوز تعليق الوصول في حالات إساءة الاستخدام أو الاحتيال أو التهديدات الأمنية أو إعادة التوزيع غير المصرح بها.</li>
+            <li>قد تتغير الخصائص ومصادر البيانات والتنبيهات والجداول وتوفر الخدمة مع تطوير النظام.</li>
+            <li>لا تضمن TECH OPTION أن تكون الخدمة خالية تمامًا من الانقطاع أو الأخطاء.</li>
+          </ul>
+          <div class="notice">لا تلغي هذه الشروط أي حقوق لا يجوز نظامًا استبعادها بموجب الأنظمة واجبة التطبيق.
+  </details>
+  <details class="legal-rich">
+    <summary>Risk Disclaimer • إخلاء مسؤولية التداول</summary>
+    <p>قد تقدم TECH OPTION معلومات سوقية أو تنبيهات أو تحليلات أو مؤشرات أو محتوى تعليمي. هذا المحتوى لا يعد استشارة مالية أو استثمارية أو قانونية أو ضريبية شخصية.</p>
+          <ul>
+            <li>التداول والاستثمار ينطويان على مخاطر عالية وقد ينتج عنهما خسارة رأس المال.</li>
+            <li>لا يضمن أي تنبيه أو تحليل أو استراتيجية أو تقييم أو هدف أو نتيجة تاريخية أداءً مستقبليًا.</li>
+            <li>قد تتغير الأسعار بسرعة وقد تختلف بين مزودي البيانات والوسطاء والأسواق وأوقات التنفيذ.</li>
+            <li>قد تتأخر التنبيهات أو لا تصل أو تتكرر أو تتوقف بسبب أعطال أو عوامل تقنية خارجة عن السيطرة.</li>
+            <li>المستخدم مسؤول بالكامل عن قرار الدخول وإدارة الصفقة والخروج منها.</li>
+            <li>الأداء السابق لا يضمن النتائج المستقبلية.</li>
+          </ul>
+          <div class="notice">لا تستخدم أموالًا لا تستطيع تحمل خسارتها، وفكّر في الحصول على استشارة مهنية مناسبة لظروفك قبل اتخاذ قرارات مالية.
+  </details>
+  <details class="legal-rich">
+    <summary>Subscription & Refund • الاشتراك والاسترداد</summary>
+    <ul>
+            <li>يبدأ الوصول إلى الاشتراك بعد التفعيل الناجح أو تأكيد الدفع.</li>
+            <li>مدة الاشتراك تكون حسب الباقة المختارة أو المؤكدة وقت الشراء.</li>
+            <li><strong>بعد تفعيل الاشتراك المدفوع، لا تكون المبالغ قابلة للاسترداد</strong>، إلا إذا كان الاسترداد مطلوبًا بموجب نظام واجب التطبيق.</li>
+            <li>عدم استخدام الخدمة أو تفويت تنبيه أو نتيجة التداول الشخصية لا ينشئ تلقائيًا حقًا في الاسترداد.</li>
+            <li>قد تكون التجربة المجانية، إن توفرت، مقيدة بالمدة أو المستخدم أو الجهاز أو الحساب أو ضوابط منع إساءة الاستخدام.</li>
+            <li>يجوز لـ TECH OPTION معالجة أخطاء الفوترة أو التفعيل عند التحقق منها.</li>
+          </ul>
+          <div class="notice"><strong>مهم:</strong> المقصود بعدم الاسترداد أن الدفع يعتبر نهائيًا بعد التفعيل بشكل عام، مع بقاء أي حقوق إلزامية يقررها النظام واجب التطبيق.
+  </details>
+  <details class="legal-rich">
+    <summary>Contact • التواصل</summary>
+    <p>للاستفسارات المتعلقة بالخصوصية أو الاشتراك أو الفوترة أو الخدمة، استخدم وسيلة الدعم أو التواصل الرسمية الموجودة داخل خدمات TECH OPTION أو البوت على Telegram.</p>
+          <p>قد يتم تحديث هذه السياسات عند تغير الخدمة أو خصائصها أو المتطلبات النظامية، وتطبق أحدث نسخة منشورة.</p>
+  </details>
+</section>
+
+
+<footer>TECH OPTION © 2026 • Market Intelligence • No Guaranteed Returns</footer>
+
+</main>
+</div>
+
+<!-- ENGLISH -->
+<div class="en-site">
+<main class="wrap">
+
+<header class="hero">
+  <div class="brand">✦ TECH OPTION</div>
+  <h1>Clearer Market Insight.<br>A More Refined Experience.</h1>
+  <div class="sub">
+    A focused platform combining market analysis, alerts and subscription access in one clean, premium experience.
+  </div>
+  <div class="hero-actions">
+    <a class="btn primary" href="https://t.me/HkoozhSub_Bot" target="_blank">🤖 Start with the Subscription Bot</a>
+    <a class="btn" href="https://t.me/techoption2" target="_blank">📣 Visit the Public Channel</a>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#en-overview">Overview</a>
+  <a href="#en-about">About</a>
+  <a href="#en-how">How It Works</a>
+  <a href="#en-services">Services</a>
+  <a href="#en-links">Official Links</a>
+  <a href="#en-support">Support</a>
+  <a href="#en-faq">FAQ</a>
+  <a href="#en-legal">Legal</a>
+  <label for="langSwitch" class="switch-label">AR</label>
+</nav>
+
+<section id="en-overview" class="card highlight">
+  <span class="badge gold-badge">✦ TECH OPTION • OVERVIEW</span>
+  <h2>One Ecosystem. One Refined Experience.</h2>
+  <p class="section-intro">
+    TECH OPTION brings the essentials together in one place — without clutter, without unnecessary complexity.
+  </p>
+
+  <div class="grid3">
+    <div class="mini">
+      <div class="num">01 • MARKET</div>
+      <h3>Market Intelligence</h3>
+      <p>Structured insight into market direction, liquidity and key levels using the TECH OPTION methodology.</p>
+    </div>
+    <div class="mini">
+      <div class="num">02 • ALERTS</div>
+      <h3>Prime Alerts</h3>
+      <p>Clear, direct alerts linked to market conditions and the logic of the system.</p>
+    </div>
+    <div class="mini">
+      <div class="num">03 • ACCESS</div>
+      <h3>Subscription Access</h3>
+      <p>Manage subscription and service access easily through Telegram.</p>
+    </div>
+  </div>
+</section>
+
+<section id="en-about" class="card">
+  <span class="badge gold-badge">✦ ABOUT TECH OPTION</span>
+  <h2>About TECH OPTION</h2>
+  <p class="section-intro">
+    TECH OPTION is a digital platform focused on delivering a structured, clear experience for market analysis, alerts and service access.
+  </p>
+
+  <div class="about-grid">
+    <div class="mini">
+      <div class="num">OUR FOCUS</div>
+      <h3>Clarity First</h3>
+      <p>We focus on organizing information, simplifying access and delivering alerts and services through one consistent experience.</p>
+    </div>
+    <div class="about-note">
+      <strong>◆ TECH OPTION PRINCIPLE</strong>
+      <p class="muted">Clearer information, easier access and full user responsibility for trading decisions.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="en-how" class="card">
+  <span class="badge gold-badge">◆ HOW IT WORKS</span>
+  <h2>From Start to Access — in Four Clear Steps</h2>
+  <p class="section-intro">
+    The subscription journey is designed to be direct, simple and easy to follow from the first click to service access.
+  </p>
+
+  <div class="how-shell">
+    <div class="how-line"></div>
+
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-icon">01</div>
+        <h3>Open the Official Bot</h3>
+        <p>Start with the official TECH OPTION bot to ensure you are using the correct access point.</p>
+      </div>
+
+      <div class="how-card">
+        <div class="how-icon">02</div>
+        <h3>Review Subscription Options</h3>
+        <p>Explore the available plans or access options and choose what fits your needs.</p>
+      </div>
+
+      <div class="how-card">
+        <div class="how-icon">03</div>
+        <h3>Complete Activation</h3>
+        <p>Follow the activation steps inside the bot until your subscription is confirmed.</p>
+      </div>
+
+      <div class="how-card">
+        <div class="how-icon">04</div>
+        <h3>Access the Service</h3>
+        <p>Once activated, access is provided according to your active subscription and account status.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="how-note">
+    ✦ Always use the official links on this website when subscribing to or accessing TECH OPTION services.
+  </div>
+</section>
+
+
+<section id="en-services" class="card">
+  <span class="badge gold-badge">✦ SERVICES</span>
+  <h2>TECH OPTION Services</h2>
+  <p class="section-intro">Every service has a clear purpose: better insight, easier access and a more organized experience.</p>
+
+  <div class="grid2">
+    <div class="mini"><h3>📊 Market Intelligence</h3><p>Organized analysis of market direction, liquidity and technical levels.</p></div>
+    <div class="mini"><h3>⚡ Prime Alerts</h3><p>Alerts based on system conditions and strategies rather than random signals.</p></div>
+    <div class="mini"><h3>🤖 Subscription Access</h3><p>Manage access and subscriptions through the official TECH OPTION Telegram bot.</p></div>
+    <div class="mini"><h3>🛡️ Risk Awareness</h3><p>Trading involves risk. Profits and future results are never guaranteed.</p></div>
+  </div>
+</section>
+
+<section id="en-links" class="card">
+  <span class="badge gold-badge">◆ OFFICIAL CHANNELS</span>
+  <h2>Official TECH OPTION Links</h2>
+  <p class="section-intro">Use these links only to access official TECH OPTION channels and services.</p>
+
+  <div class="socials">
+    <a class="social" href="https://t.me/techoption2" target="_blank"><strong>Telegram Channel ↗</strong><span>Official public channel</span></a>
+    <a class="social" href="https://t.me/HkoozhSub_Bot" target="_blank"><strong>Subscription Bot ↗</strong><span>Official subscription bot</span></a>
+    <a class="social" href="https://www.tiktok.com/@techoption25?_r=1&_t=ZS-98g2ZvrFR0k" target="_blank"><strong>TikTok ↗</strong><span>@techoption25</span></a>
+    <a class="social" href="https://snapchat.com/t/RquqbRy0" target="_blank"><strong>Snapchat ↗</strong><span>Official account</span></a>
+  </div>
+</section>
+
+
+<section id="en-support" class="card">
+  <span class="badge gold-badge">◆ SUPPORT & CONTACT</span>
+  <h2>Support & Contact</h2>
+  <p class="section-intro">Use official TECH OPTION links only when accessing subscriptions, support or public updates.</p>
+
+  <div class="support-grid">
+    <div class="support-card">
+      <strong>🤖 Subscription Bot</strong>
+      <p>For subscription, service access and subscription status.</p>
+      <a class="btn primary" href="https://t.me/HkoozhSub_Bot" target="_blank">Open Official Bot</a>
+    </div>
+    <div class="support-card">
+      <strong>📣 Public Channel</strong>
+      <p>For public TECH OPTION updates and content.</p>
+      <a class="btn" href="https://t.me/techoption2" target="_blank">Open Public Channel</a>
+    </div>
+  </div>
+</section>
+
+<section id="en-faq" class="card">
+  <span class="badge gold-badge">◈ FAQ</span>
+  <h2>Frequently Asked Questions</h2>
+
+  <details><summary>Are profits guaranteed?</summary><p>No. Trading and investing involve risk, and profits or results are never guaranteed.</p></details>
+  <details><summary>How do I subscribe?</summary><p>Subscription and service access are managed through the official TECH OPTION bot available at the top of the page.</p></details>
+  <details><summary>Is the subscription refundable?</summary><p>After activation, paid subscriptions are generally non-refundable unless applicable law requires otherwise.</p></details>
+  <details><summary>Are TECH OPTION alerts personalized financial advice?</summary><p>No. The service provides market information, analysis and alerts. Users remain responsible for their own financial and trading decisions.</p></details>
+</section>
+
+
+<section id="en-legal" class="card">
+  <span class="badge gold-badge">◆ LEGAL CENTER</span>
+  <h2>Policies & Terms</h2>
+
+  <details class="legal-rich">
+    <summary>Privacy Policy</summary>
+    <p>TECH OPTION respects the privacy of its users. This policy explains how information is handled when you interact with TECH OPTION services or its Telegram bot.</p>
+          <h3>Information We May Process</h3>
+          <ul>
+            <li>Telegram User ID</li>
+            <li>Display name and username, if available</li>
+            <li>Bot interaction and subscription status</li>
+            <li>Subscription start and expiration dates</li>
+            <li>Requests and actions submitted through the bot</li>
+            <li>Technical logs required for security, troubleshooting, and service operation</li>
+          </ul>
+          <h3>How We Use It</h3>
+          <ul>
+            <li>Manage subscriptions and service access</li>
+            <li>Provide requested bot functionality and support</li>
+            <li>Maintain reliability and security</li>
+            <li>Prevent abuse, spam, or unauthorized access</li>
+            <li>Diagnose technical problems</li>
+          </ul>
+          <p>TECH OPTION does not sell users' personal information. We do not request Telegram passwords or Telegram account credentials.</p>
+  </details>
+  <details class="legal-rich">
+    <summary>Terms of Service</summary>
+    <p>By using TECH OPTION services, you agree to use the service lawfully and in accordance with these terms.</p>
+          <ul>
+            <li>Access may depend on an active subscription or trial.</li>
+            <li>Subscriptions are for the authorized user's own use and may not be resold, shared, copied, or redistributed without permission.</li>
+            <li>TECH OPTION may suspend access in cases of abuse, fraud, misuse, security threats, or unauthorized redistribution.</li>
+            <li>Features, data sources, alerts, schedules, and service availability may change as the service evolves.</li>
+            <li>TECH OPTION does not guarantee uninterrupted or error-free service.</li>
+          </ul>
+          <div class="notice">These terms do not remove any rights that cannot legally be excluded under applicable law.</div>
+  </details>
+  <details class="legal-rich">
+    <summary>Risk Disclaimer</summary>
+    <p>TECH OPTION may provide market information, alerts, analysis, indicators, or educational content. This content is not personalized financial, investment, legal, or tax advice.</p>
+          <ul>
+            <li>Trading and investing involve substantial risk, including the possible loss of capital.</li>
+            <li>No alert, analysis, strategy, score, target, or historical result guarantees future performance.</li>
+            <li>Prices may change quickly and may differ between data providers, brokers, exchanges, or execution times.</li>
+            <li>Alerts may be delayed, missed, duplicated, interrupted, or affected by technical issues beyond TECH OPTION's control.</li>
+            <li>You are solely responsible for deciding whether to enter, manage, or exit any trade.</li>
+            <li>Past performance does not guarantee future results.</li>
+          </ul>
+          <div class="notice">Never trade money you cannot afford to lose. Consider obtaining professional advice appropriate to your circumstances before making financial decisions.</div>
+  </details>
+  <details class="legal-rich">
+    <summary>Subscription & Refund</summary>
+    <ul>
+            <li>Subscription access begins after successful activation or confirmation of payment.</li>
+            <li>Subscription duration is based on the plan selected or confirmed at purchase.</li>
+            <li>Once a paid subscription has been activated, payments are non-refundable, except where a refund is required by applicable law.</li>
+            <li>Unused time, missed alerts, personal trading results, or a decision not to use the service do not automatically create a right to a refund.</li>
+            <li>Free trials, if offered, may be limited by time, user, device, account, or other anti-abuse controls.</li>
+            <li>TECH OPTION may correct billing or activation errors where verified.</li>
+          </ul>
+          <div class="notice"><strong>Important:</strong> Non-refundable means the payment is generally final after activation, subject to any mandatory legal rights that apply.</div>
+  </details>
+  <details class="legal-rich">
+    <summary>Contact</summary>
+    <p>For privacy, subscription, billing, or service questions, please use the official support or contact method provided inside TECH OPTION services or its Telegram bot.</p>
+          <p>TECH OPTION may update these policies when the service, its features, or applicable requirements change. The latest published version will apply.</p>
+  </details>
+</section>
+
+
+<footer>TECH OPTION © 2026 • Market Intelligence • No Guaranteed Returns</footer>
+
+</main>
+</div>
+
+</body>
+</html>
